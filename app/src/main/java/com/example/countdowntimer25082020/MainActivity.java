@@ -37,17 +37,21 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if (!mIsRunning){
-                    CountDownTimer countDownTimer = new CountDownTimer(5200, 1000) {
+                    mIsRunning = true;
+                    final CountDownTimer countDownTimer = new CountDownTimer(1200, 1000) {
                         @Override
                         public void onTick(long l) {
                             if ( l > 1000){
+                                if (mCount == mArrayImages.length - 1){
+                                    mCount = 0;
+                                }
                                 mImg.setImageResource(mArrayImages[mCount++]);
                             }
                         }
-
                         @Override
                         public void onFinish() {
-
+                            this.start();
+                            //de quy : recursive
                         }
                     };
                     countDownTimer.start();
